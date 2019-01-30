@@ -1,0 +1,29 @@
+---
+# install tasks file for ansible-role-unixodbc
+
+- name: Install UnixODBC
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - unixodbc
+  register: my_result
+  until: my_result is succeeded
+  tags: unixodbc
+
+- name: Download MySQL ODBC Driver
+  get_url:
+    url: "{{ unixodbc_mysql_dl_url }}{{ unixodbc_mysql_dl_file }}"
+    dest: "{{ unixodbc_mysql_dl_path }}"
+    checksum: "{{ unixodbc_mysql_dl_checksum }}"
+    when: unixodbc_mysql_dl_enabled
+  tags: unixodbc
+
+- name: Unarchive MySQL ODBC Driver
+  unarchive:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}"
+    dest: "{{ unixodbc_mysql_dl_path }}mysql-odbc-driver"
+    remote_src: yes
+    when: unixodbc_mysql_dl_enabled
+  tags: unixodbc

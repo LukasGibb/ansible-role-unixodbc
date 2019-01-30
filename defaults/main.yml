@@ -1,0 +1,8 @@
+---
+# defaults file for ansible-role-unixodbc
+
+unixodbc_mysql_dl_enabled: false
+unixodbc_mysql_dl_url: https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/
+unixodbc_mysql_dl_file: mysql-connector-odbc-8.0.14-linux-ubuntu18.04-x86-64bit.tar.gz
+unixodbc_mysql_dl_checksum: md5:1eb8ebd27126abaf99cc671b4db8b638
+unixodbc_mysql_dl_path: /root/

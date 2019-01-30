@@ -1,0 +1,8 @@
+---
+# tasks file for ansible-role-unixodbc
+
+- include: install.yml
+
+- include: configure.yml
+
+- include: check.yml
