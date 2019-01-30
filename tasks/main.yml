@@ -3,6 +3,9 @@
 
 - include: install.yml
 
+- include: driver-mysql
+  when: unixodbc_mysql_dl_enabled
+
 - include: configure.yml
 
 - include: check.yml

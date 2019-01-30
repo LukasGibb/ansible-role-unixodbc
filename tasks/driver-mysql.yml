@@ -1,0 +1,47 @@
+---
+# install mysql driver tasks file for ansible-role-unixodbc
+
+- name: Download MySQL ODBC Driver
+  get_url:
+    url: "{{ unixodbc_mysql_dl_url }}{{ unixodbc_mysql_dl_filename }}"
+    dest: "{{ unixodbc_mysql_dl_path }}"
+    checksum: "{{ unixodbc_mysql_dl_checksum }}"
+  tags: unixodbc
+
+- name: Ensure MySQL directory exists
+  file:
+    path: "{{ unixodbc_mysql_dl_path }}"
+    state: directory
+  tags: unixodbc
+
+- name: Unarchive MySQL ODBC Driver
+  unarchive:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_filename }}"
+    dest: "{{ unixodbc_mysql_dl_path }}"
+    remote_src: yes
+  tags: unixodbc
+
+- name: Copy MySQL ODBC Driver Setup library
+  copy:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8S.so"
+    dest: /usr/local/lib/libmyodbc8S.so
+  tags: unixodbc
+
+- name: Copy MySQL ODBC Driver UNICODE library
+  copy:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8w.so"
+    dest: /usr/local/lib/libmyodbc8w.so
+  tags: unixodbc
+
+- name: Copy MySQL ODBC Driver ANSI library
+  copy:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8a.so"
+    dest: /usr/local/lib/libmyodbc8a.so
+  tags: unixodbc
+
+- name: Copy MySQL ODBC Driver installer script
+  copy:
+    src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/bin/myodbc-installer"
+    dest: /usr/local/bin/myodbc-installer
+  tags: unixodbc
+  myodbc-installer
