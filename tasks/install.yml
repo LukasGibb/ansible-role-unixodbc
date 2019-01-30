@@ -17,7 +17,7 @@
     url: "{{ unixodbc_mysql_dl_url }}{{ unixodbc_mysql_dl_file }}"
     dest: "{{ unixodbc_mysql_dl_path }}"
     checksum: "{{ unixodbc_mysql_dl_checksum }}"
-    when: unixodbc_mysql_dl_enabled
+  when: unixodbc_mysql_dl_enabled
   tags: unixodbc
 
 - name: Unarchive MySQL ODBC Driver
@@ -25,5 +25,5 @@
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}"
     dest: "{{ unixodbc_mysql_dl_path }}mysql-odbc-driver"
     remote_src: yes
-    when: unixodbc_mysql_dl_enabled
+  when: unixodbc_mysql_dl_enabled
   tags: unixodbc
