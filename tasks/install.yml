@@ -22,13 +22,13 @@
 
 - name: Ensure MySQL directory exists
   file:
-    path: "{{ unixodbc_mysql_dl_path }}mysql-odbc-driver"
+    path: "{{ unixodbc_mysql_dl_path }}mysql-connector-odbc"
     state: directory
 
 - name: Unarchive MySQL ODBC Driver
   unarchive:
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}"
-    dest: "{{ unixodbc_mysql_dl_path }}mysql-odbc-driver"
+    dest: "{{ unixodbc_mysql_dl_path }}mysql-connector-odbc"
     remote_src: yes
   when: unixodbc_mysql_dl_enabled
   tags: unixodbc
