@@ -25,22 +25,26 @@
   copy:
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8S.so"
     dest: /usr/local/lib/libmyodbc8S.so
+    remote_src: yes
   tags: unixodbc
 
 - name: Copy MySQL ODBC Driver UNICODE library
   copy:
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8w.so"
     dest: /usr/local/lib/libmyodbc8w.so
+    remote_src: yes
   tags: unixodbc
 
 - name: Copy MySQL ODBC Driver ANSI library
   copy:
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/lib/libmyodbc8a.so"
     dest: /usr/local/lib/libmyodbc8a.so
+    remote_src: yes
   tags: unixodbc
 
 - name: Copy MySQL ODBC Driver installer script
   copy:
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/bin/myodbc-installer"
     dest: /usr/local/bin/myodbc-installer
+    remote_src: yes
   tags: unixodbc
