@@ -47,4 +47,5 @@
     src: "{{ unixodbc_mysql_dl_path }}{{ unixodbc_mysql_dl_file }}/bin/myodbc-installer"
     dest: /usr/local/bin/myodbc-installer
     remote_src: yes
+    mode: 0755
   tags: unixodbc
