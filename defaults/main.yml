@@ -9,3 +9,5 @@ unixodbc_mysql_dl_checksum: md5:1eb8ebd27126abaf99cc671b4db8b638
 unixodbc_mysql_dl_path: /root/
 
 unixodbc_mysql_dl_filename: "{{ unixodbc_mysql_dl_file }}{{ unixodbc_mysql_dl_ext }}"
+
+unixodbc_dsns: []

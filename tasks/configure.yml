@@ -1,2 +1,10 @@
 ---
 # configure tasks file for ansible-role-unixodbc
+
+- name: Write custom ODBC DSN listing
+  template:
+    src: odbc.ini.j2
+    dest: /etc/odbc.ini
+    owner: root
+    group: root
+    mode: 0644
