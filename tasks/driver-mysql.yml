@@ -49,3 +49,13 @@
     remote_src: yes
     mode: 0755
   tags: unixodbc
+
+- name: Ensure MySQL ODBC UNICODE Driver is installed
+  shell:
+    myodbc-installer -d -l | grep 'MySQL ODBC 8.0 Driver' || myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so"
+  tags: unixodbc
+
+- name: Ensure MySQL ODBC ANSI Driver is installed
+  shell:
+    myodbc-installer -d -l | grep 'MySQL ODBC 8.0 ANSI' || myodbc-installer -a -d -n "MySQL ODBC 8.0 ANSI" -t "Driver=/usr/local/lib/libmyodbc8a.so"
+  tags: unixodbc
