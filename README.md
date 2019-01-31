@@ -1,7 +1,7 @@
 ansible-role-unixodbc
 =========
 
-An Ansible role that installs and configures UnixODBC.
+An Ansible role that installs and configures UnixODBC including DSN entries.
 
 The role can also optionally download and install the MySQL ODBC 8.0 driver (only for Ubuntu 1804 x64 currently).
 
@@ -31,11 +31,20 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
          - { role: lukasgibb.unixodbc, unixodbc_mysql_dl_enabled: true }
+
+Add your list of DSNs in the host or group variables like this:
+
+    unixodbc_dsns:
+      - name: asterisk-connector
+        description: MySQL connection to 'asterisk' database
+        driver: MySQL ODBC 8.0 Driver
+        database: asterisk
+        server: 127.0.0.1
+        port: 3306
+        socket: /var/run/mysqld/mysql.sock
 
 License
 -------

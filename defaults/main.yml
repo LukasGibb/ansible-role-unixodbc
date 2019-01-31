@@ -1,13 +1,39 @@
 ---
 # defaults file for ansible-role-unixodbc
 
+# MySQL Driver Variables #
+
+# Set to true to download and install the MySQL ODBC driver
 unixodbc_mysql_dl_enabled: false
+
+# Base URL for the download
 unixodbc_mysql_dl_url: https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/
+
+# File name for the download (without the extension)
 unixodbc_mysql_dl_file: mysql-connector-odbc-8.0.14-linux-ubuntu18.04-x86-64bit
+
+# File extension for the download
 unixodbc_mysql_dl_ext: .tar.gz
+
+# Checksum for the download
 unixodbc_mysql_dl_checksum: md5:1eb8ebd27126abaf99cc671b4db8b638
+
+# The path to download the file to (also unarchived here)
 unixodbc_mysql_dl_path: /root/
 
-unixodbc_mysql_dl_filename: "{{ unixodbc_mysql_dl_file }}{{ unixodbc_mysql_dl_ext }}"
 
+# Custom DSN's #
+
+# A list of DSN entries that will be created in odbc.ini file (template)
 unixodbc_dsns: []
+
+# Example:
+#
+# unixodbc_dsns:
+#   - name: asterisk-connector
+#     description: MySQL connection to 'asterisk' database
+#     driver: MySQL ODBC 8.0 Driver
+#     database: asterisk
+#     server: 127.0.0.1
+#     port: 3306
+#     socket: /var/run/mysqld/mysql.sock

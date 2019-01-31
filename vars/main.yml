@@ -1,2 +1,5 @@
 ---
 # vars file for ansible-role-unixodbc
+
+# Don't set this, just concatenating the full filename
+unixodbc_mysql_dl_filename: "{{ unixodbc_mysql_dl_file }}{{ unixodbc_mysql_dl_ext }}"
