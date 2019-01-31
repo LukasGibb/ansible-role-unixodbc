@@ -52,10 +52,18 @@
 
 - name: Ensure MySQL ODBC UNICODE Driver is installed
   shell:
-    myodbc-installer -d -l | grep 'MySQL ODBC 8.0 Driver' || myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so"
+    myodbc-installer -d -l | grep -q 'MySQL ODBC 8.0 Driver'
+    && echo -n 'INSTALLED'
+    || myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so"
+  register: mysql_unicode_result
+  changed_when: mysql_unicode_result.stdout != 'INSTALLED'
   tags: unixodbc
 
 - name: Ensure MySQL ODBC ANSI Driver is installed
   shell:
-    myodbc-installer -d -l | grep 'MySQL ODBC 8.0 ANSI' || myodbc-installer -a -d -n "MySQL ODBC 8.0 ANSI" -t "Driver=/usr/local/lib/libmyodbc8a.so"
+    myodbc-installer -d -l | grep -q 'MySQL ODBC 8.0 ANSI'
+    && echo -n 'INSTALLED'
+    || myodbc-installer -a -d -n "MySQL ODBC 8.0 ANSI" -t "Driver=/usr/local/lib/libmyodbc8a.so"
+  register: mysql_ansi_result
+  changed_when: mysql_ansi_result.stdout != 'INSTALLED'
   tags: unixodbc
